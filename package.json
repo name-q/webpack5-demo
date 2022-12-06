@@ -1,0 +1,20 @@
+{
+  "name": "webpack5-demo",
+  "version": "1.0.0",
+  "description": "webpack5-demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/name-q/webpack5-demo.git"
+  },
+  "keywords": [],
+  "author": "name-q",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/name-q/webpack5-demo/issues"
+  },
+  "homepage": "https://github.com/name-q/webpack5-demo#readme"
+}
