@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/name-q/webpack5-demo/issues"
   },
-  "homepage": "https://github.com/name-q/webpack5-demo#readme"
+  "homepage": "https://github.com/name-q/webpack5-demo#readme",
+  "dependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
 }
