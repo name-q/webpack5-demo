@@ -10,6 +10,8 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         // 文件名 将 js 文件输出到 static/js 目录中
         filename: "static/js/main.js",
+        // 自动将上次打包目录资源清空
+        clean: true,
     },
 
     // 加载器
