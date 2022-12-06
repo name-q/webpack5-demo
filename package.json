@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/name-q/webpack5-demo#readme",
   "dependencies": {
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
   },
   "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
     "css-loader": "^6.7.2",
     "style-loader": "^3.3.1"
   }
