@@ -44,6 +44,17 @@ module.exports = {
                     "stylus-loader"
                 ],
             },
+            {
+                test: /\.(png|jpe?g|gif|webp)$/,
+                type: "asset",
+                parser: {
+                    dataUrlCondition: {
+                        // 小于30kb的图片会被base64处理
+                        // 优点：减少请求数 缺点：体积会变大
+                        maxSize: 30 * 1024
+                    }
+                }
+            },
         ],
     },
 
