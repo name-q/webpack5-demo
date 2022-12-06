@@ -32,6 +32,18 @@ module.exports = {
                 test: /\.s[ac]ss$/,
                 use: ["style-loader", "css-loader", "sass-loader"],
             },
+            {
+                test: /\.styl$/,
+                // use 数组里面 Loader 执行顺序是从下到上
+                use: [
+                    // commonjs编译成<style>标签内容并挂在在html中
+                    "style-loader",
+                    // css编译成commonjs
+                    "css-loader",
+                    // styl编译成css
+                    "stylus-loader"
+                ],
+            },
         ],
     },
 
