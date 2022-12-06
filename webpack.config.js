@@ -64,6 +64,14 @@ module.exports = {
                     filename: "static/img/[hash:8][ext][query]",
                 },
             },
+            {
+                test: /\.(ttf|woff2?)$/,
+                // 原封不动的输出
+                type: "asset/resource",
+                generator: {
+                    filename: "static/media/[hash:8][ext][query]",
+                },
+            },
         ],
     },
 
