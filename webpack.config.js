@@ -1,4 +1,5 @@
 const path = require("path")
+const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
     // 入口 -相对路径
@@ -77,7 +78,10 @@ module.exports = {
 
     // 插件
     plugins: [
-
+        new ESLintWebpackPlugin({
+            // 指定检查文件的根目录
+            context: path.resolve(__dirname, "src"),
+        }),
     ],
 
     // 模式
