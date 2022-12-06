@@ -16,6 +16,12 @@ module.exports = {
     module:{
         rules:[
             // loader配置
+            {
+                // 用来匹配 .css 结尾的文件
+                test: /\.css$/,
+                // use 数组里面 Loader 执行顺序是从右到左
+                use: ["style-loader", "css-loader"],
+            },
         ],
     },
 
@@ -23,7 +29,7 @@ module.exports = {
     plugins:[
 
     ],
-    
+
     // 模式
     mode:'development'
 }
