@@ -65,7 +65,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.(ttf|woff2?)$/,
+                test: /\.(ttf|woff2?|map4|map3|avi)$/,
                 // 原封不动的输出
                 type: "asset/resource",
                 generator: {
