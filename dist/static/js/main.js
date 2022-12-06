@@ -236,7 +236,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
   \**************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"7ab4f4029f51ccfdf2e7.jpg\";\n\n//# sourceURL=webpack://webpack5-demo/./src/images/1.jpg?");
+eval("module.exports = __webpack_require__.p + \"static/img/7ab4f402.jpg\";\n\n//# sourceURL=webpack://webpack5-demo/./src/images/1.jpg?");
 
 /***/ }),
 
@@ -246,7 +246,7 @@ eval("module.exports = __webpack_require__.p + \"7ab4f4029f51ccfdf2e7.jpg\";\n\n
   \***************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"e5e891e21139be53a060.jpeg\";\n\n//# sourceURL=webpack://webpack5-demo/./src/images/2.jpeg?");
+eval("module.exports = __webpack_require__.p + \"static/img/e5e891e2.jpeg\";\n\n//# sourceURL=webpack://webpack5-demo/./src/images/2.jpeg?");
 
 /***/ }),
 
@@ -359,7 +359,7 @@ eval("module.exports = \"data:image/png;base64,/9j/4AAQSkZJRgABAQAAkACQAAD/4QB0R
 /******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
 /******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
 /******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 		__webpack_require__.p = scriptUrl + "../../";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */

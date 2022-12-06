@@ -8,8 +8,8 @@ module.exports = {
     output: {
         // 输出路径 -绝对路径
         path: path.resolve(__dirname, 'dist'),
-        // 文件名
-        filename: 'main.js',
+        // 文件名 将 js 文件输出到 static/js 目录中
+        filename: "static/js/main.js",
     },
 
     // 加载器
@@ -53,7 +53,14 @@ module.exports = {
                         // 优点：减少请求数 缺点：体积会变大
                         maxSize: 30 * 1024
                     }
-                }
+                },
+                generator: {
+                    // 将图片文件输出到 static/img 目录中
+                    // [hash:8]: hash值取8位
+                    // [ext]: 使用之前的文件扩展名
+                    // [query]: 添加之前的query参数
+                    filename: "static/img/[hash:8][ext][query]",
+                },
             },
         ],
     },
