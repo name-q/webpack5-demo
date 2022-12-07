@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","mappings":"AAAAA,QAAQC,IAAI","sources":["webpack://webpack5-demo/./src/main.js"],"sourcesContent":["console.log('main.js')"],"names":["console","log"],"sourceRoot":""}
