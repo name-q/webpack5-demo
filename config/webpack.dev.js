@@ -103,6 +103,10 @@ module.exports = {
         // 是否自动打开浏览器
         open: true,
     },
+
+    // https://webpack.docschina.org/configuration/devtool/
+    devtool: "cheap-module-source-map",
+
     // 模式
     mode: 'development'
 }

@@ -116,6 +116,9 @@ module.exports = {
         new CssMinimizerPlugin(),
     ],
 
+    // https://webpack.docschina.org/configuration/devtool/
+    devtool: "source-map",
+
     // 模式
     mode: 'production'
 }
