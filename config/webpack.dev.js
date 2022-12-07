@@ -79,6 +79,12 @@ module.exports = {
                         // // 也可以用包含
                         include: path.resolve(__dirname, "../src"),
                         loader: "babel-loader",
+                        options: {
+                            // 开启babel编译缓存
+                            cacheDirectory: true,
+                            // 缓存文件不要压缩
+                            cacheCompression: false,
+                        },
                     },
                 ]
             }
@@ -93,6 +99,10 @@ module.exports = {
             context: path.resolve(__dirname, "../src"),
             // 默认值
             exclude: "node_modules",
+            // 开启缓存
+            cache: true,
+            // 缓存目录
+            cacheLocation: path.resolve(__dirname, "../node_modules/.cache/.eslintcache"),
         }),
         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
