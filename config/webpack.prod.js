@@ -1,6 +1,7 @@
 const path = require("path")
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     // 入口 -相对项目路径
@@ -25,23 +26,25 @@ module.exports = {
                 // 用来匹配 .css 结尾的文件
                 test: /\.css$/,
                 // use 数组里面 Loader 执行顺序是从右到左
-                use: ["style-loader", "css-loader"],
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
             {
                 test: /\.less$/,
                 // loader:'less-loader'
-                use: ["style-loader", "css-loader", "less-loader"],
+                use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
             },
             {
                 test: /\.s[ac]ss$/,
-                use: ["style-loader", "css-loader", "sass-loader"],
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
             },
             {
                 test: /\.styl$/,
                 // use 数组里面 Loader 执行顺序是从下到上
                 use: [
-                    // commonjs编译成<style>标签内容并挂在在html中
-                    "style-loader",
+                    // commonjs编译成静态文件Link挂载在html中
+                    // 区别"style-loader": <style>标签是js创建挂载在html中
+                    // 网速慢的情况下加载js也慢会造成闪屏 <link>标签则不会
+                    MiniCssExtractPlugin.loader,
                     // css编译成commonjs
                     "css-loader",
                     // styl编译成css
@@ -94,8 +97,13 @@ module.exports = {
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/index.html"),
         }),
+        // 提取css成单独文件
+        new MiniCssExtractPlugin({
+            // 定义输出文件名和目录
+            filename: "static/css/main.css",
+        }),
     ],
-    
+
     // 模式
     mode: 'production'
 }
