@@ -25,17 +25,58 @@ module.exports = {
                 // https://webpack.docschina.org/loaders/css-loader/
                 // 用来匹配 .css 结尾的文件
                 test: /\.css$/,
-                // use 数组里面 Loader 执行顺序是从右到左
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    // 能解决大多数样式兼容性问题
+                                    "postcss-preset-env",
+                                ],
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.less$/,
                 // loader:'less-loader'
-                use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    "postcss-preset-env",
+                                ],
+                            },
+                        },
+                    },
+                    "less-loader"
+                ],
             },
             {
                 test: /\.s[ac]ss$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    "postcss-preset-env",
+                                ],
+                            },
+                        },
+                    },
+                    "sass-loader"
+                ],
             },
             {
                 test: /\.styl$/,
@@ -47,6 +88,16 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     // css编译成commonjs
                     "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    "postcss-preset-env",
+                                ],
+                            },
+                        },
+                    },
                     // styl编译成css
                     "stylus-loader"
                 ],
