@@ -95,7 +95,18 @@ module.exports = {
             template: path.resolve(__dirname, "public/index.html"),
         }),
     ],
-
+    
+    // 开发服务器
+    // 编译指令由npx webpacl -> npx webpack serve
+    // 无dist文件输出 改为内存输出
+    devServer: {
+        // 启动服务器域名
+        host: "localhost",
+        // 启动服务器端口号
+        port: "2333",
+        // 是否自动打开浏览器
+        open: true,
+    },
     // 模式
     mode: 'development'
 }
