@@ -102,6 +102,8 @@ module.exports = {
         port: "2333",
         // 是否自动打开浏览器
         open: true,
+        // 开启HMR功能
+        hot: true,
     },
 
     // https://webpack.docschina.org/configuration/devtool/
