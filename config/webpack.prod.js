@@ -3,6 +3,25 @@ const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+// 获取处理样式的Loaders
+const getStyleLoaders = (preProcessor) => {
+    return [
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        {
+            loader: "postcss-loader",
+            options: {
+                postcssOptions: {
+                    plugins: [
+                        "postcss-preset-env", // 能解决大多数样式兼容性问题
+                    ],
+                },
+            },
+        },
+        ...preProcessor,
+    ].filter(Boolean);
+};
+
 module.exports = {
     // 入口 -相对项目路径
     entry: './src/main.js',
@@ -25,82 +44,21 @@ module.exports = {
                 // https://webpack.docschina.org/loaders/css-loader/
                 // 用来匹配 .css 结尾的文件
                 test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: [
-                                    // 能解决大多数样式兼容性问题
-                                    "postcss-preset-env",
-                                ],
-                            },
-                        },
-                    },
-                ],
+                use: getStyleLoaders([])
             },
             {
                 test: /\.less$/,
                 // loader:'less-loader'
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: [
-                                    "postcss-preset-env",
-                                ],
-                            },
-                        },
-                    },
-                    "less-loader"
-                ],
+                use: getStyleLoaders(['less-loader'])
             },
             {
                 test: /\.s[ac]ss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: [
-                                    "postcss-preset-env",
-                                ],
-                            },
-                        },
-                    },
-                    "sass-loader"
-                ],
+                use: getStyleLoaders(['sass-loader'])
             },
             {
                 test: /\.styl$/,
                 // use 数组里面 Loader 执行顺序是从下到上
-                use: [
-                    // commonjs编译成静态文件Link挂载在html中
-                    // 区别"style-loader": <style>标签是js创建挂载在html中
-                    // 网速慢的情况下加载js也慢会造成闪屏 <link>标签则不会
-                    MiniCssExtractPlugin.loader,
-                    // css编译成commonjs
-                    "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: [
-                                    "postcss-preset-env",
-                                ],
-                            },
-                        },
-                    },
-                    // styl编译成css
-                    "stylus-loader"
-                ],
+                use: getStyleLoaders(['stylus-loader'])
             },
             {
                 test: /\.(png|jpe?g|gif|webp)$/,
