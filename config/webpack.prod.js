@@ -1,8 +1,13 @@
+const os = require("os");
 const path = require("path")
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+
+// cpu核数
+const threads = os.cpus().length;
 
 // 获取处理样式的Loaders
 const getStyleLoaders = (preProcessor) => {
@@ -95,13 +100,25 @@ module.exports = {
                         // exclude: /node_modules/,
                         // // 也可以用包含
                         include: path.resolve(__dirname, "../src"),
-                        loader: "babel-loader",
-                        options: {
-                            // 开启babel编译缓存
-                            cacheDirectory: true,
-                            // 缓存文件不要压缩
-                            cacheCompression: false,
-                        },
+                        use: [
+                            {
+                                // 开启多进程
+                                loader: "thread-loader",
+                                options: {
+                                    // 进程数量
+                                    workers: threads,
+                                },
+                            },
+                            {
+                                loader: "babel-loader",
+                                options: {
+                                    // 开启babel编译缓存
+                                    cacheDirectory: true,
+                                    // 缓存文件不要压缩
+                                    cacheCompression: false,
+                                },
+                            }
+                        ]
                     },
                 ]
             }
@@ -119,6 +136,8 @@ module.exports = {
             cache: true,
             // 缓存目录
             cacheLocation: path.resolve(__dirname, "../node_modules/.cache/.eslintcache"),
+            // 开启多进程
+            threads,
         }),
         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
@@ -130,9 +149,24 @@ module.exports = {
             // 定义输出文件名和目录
             filename: "static/css/main.css",
         }),
-        // css压缩
-        new CssMinimizerPlugin(),
+        new TerserPlugin({
+            // 开启多进程
+            parallel: threads
+        })
     ],
+
+    optimization: {
+        // 压缩操作
+        minimize: true,
+        minimizer: [
+            // css压缩 也可以写到plugins中效果一样
+            new CssMinimizerPlugin(),
+            new TerserPlugin({
+                // 开启多进程
+                parallel: threads
+            })
+        ],
+    },
 
     // https://webpack.docschina.org/configuration/devtool/
     devtool: "source-map",
