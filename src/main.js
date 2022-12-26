@@ -24,3 +24,11 @@ document.getElementById('btn').onclick = () => {
         console.log(mul(3, 3))
     })
 }
+
+// import "core-js/es/promise"; babel配置比手动引用更好
+// 添加promise代码
+const promise = Promise.resolve();
+promise.then(() => {
+  console.log("hello promise");
+});
+console.log([1,2,3,4,5].includes(5))
