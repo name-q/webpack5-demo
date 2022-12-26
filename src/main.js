@@ -18,3 +18,9 @@ if (module.hot) {
     module.hot.accept("./js/count.js");
     module.hot.accept("./js/sum.js");
 }
+
+document.getElementById('btn').onclick = () => {
+    import('./js/math').then(({ mul }) => {
+        console.log(mul(3, 3))
+    })
+}

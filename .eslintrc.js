@@ -25,4 +25,7 @@ module.exports = {
     // 继承其他规则
     extends: ["eslint:recommended"],
     // 其他规则详见：https://eslint.bootcss.com/docs/user-guide/configuring
+
+    // 解决动态导入import语法报错问题 --> 使用eslint-plugin-import解决
+    plugins: ["import"],
 };
