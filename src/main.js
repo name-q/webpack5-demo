@@ -20,7 +20,7 @@ if (module.hot) {
 }
 
 document.getElementById('btn').onclick = () => {
-    import('./js/math').then(({ mul }) => {
+    import(/* webpackChunkName: "math" */ './js/math').then(({ mul }) => {
         console.log(mul(3, 3))
     })
 }

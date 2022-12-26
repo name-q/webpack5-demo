@@ -38,7 +38,11 @@ module.exports = {
         // 输出路径 -绝对路径
         path: path.resolve(__dirname, '../dist'),
         // 文件名 将 js 文件输出到 static/js 目录中
-        filename: "static/js/main.js",
+        filename: "static/js/[name].js",
+        // 动态导入输出资源命名方式
+        chunkFilename: "static/js/[name].chunk.js",
+        // 图片、字体等资源命名方式（注意用hash）
+        assetModuleFilename: "static/media/[name].[hash:8][ext]",
         // 自动将上次打包目录资源清空
         clean: true,
     },
