@@ -21,8 +21,10 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.20.5",
+    "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/preset-env": "^7.20.2",
+    "@vue/preload-webpack-plugin": "^2.0.0",
     "babel-loader": "^9.1.0",
     "css-loader": "^6.7.2",
     "css-minimizer-webpack-plugin": "^4.2.2",

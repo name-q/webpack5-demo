@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
 
 // cpu核数
 const threads = os.cpus().length;
@@ -41,7 +42,7 @@ module.exports = {
         filename: "static/js/[name].js",
         // 动态导入输出资源命名方式
         chunkFilename: "static/js/[name].chunk.js",
-        // 图片、字体等资源命名方式（注意用hash）
+        // 图片、字体等资源命名方式（通过type: "asset"处理的文件）（注意用hash）
         assetModuleFilename: "static/media/[name].[hash:8][ext]",
         // 自动将上次打包目录资源清空
         clean: true,
@@ -83,21 +84,21 @@ module.exports = {
                                 maxSize: 30 * 1024
                             }
                         },
-                        generator: {
-                            // 将图片文件输出到 static/img 目录中
-                            // [hash:8]: hash值取8位
-                            // [ext]: 使用之前的文件扩展名
-                            // [query]: 添加之前的query参数
-                            filename: "static/img/[hash:8][ext][query]",
-                        },
+                        // generator: {
+                        //     // 将图片文件输出到 static/img 目录中
+                        //     // [hash:8]: hash值取8位
+                        //     // [ext]: 使用之前的文件扩展名
+                        //     // [query]: 添加之前的query参数
+                        //     filename: "static/img/[hash:8][ext][query]",
+                        // },
                     },
                     {
                         test: /\.(ttf|woff2?|map4|map3|avi)$/,
                         // 原封不动的输出
                         type: "asset/resource",
-                        generator: {
-                            filename: "static/media/[hash:8][ext][query]",
-                        },
+                        // generator: {
+                        //     filename: "static/media/[hash:8][ext][query]",
+                        // },
                     },
                     {
                         test: /\.js$/,
@@ -154,12 +155,19 @@ module.exports = {
         // 提取css成单独文件
         new MiniCssExtractPlugin({
             // 定义输出文件名和目录
-            filename: "static/css/main.css",
+            filename: "static/css/[name].css",
+            chunkFilename: "static/css/[name].chunk.css",
         }),
         new TerserPlugin({
             // 开启多进程
             parallel: threads
-        })
+        }),
+        new PreloadWebpackPlugin({
+            // preload 空闲加载当前页资源 兼容性更好
+            rel: "preload", 
+            as: "script",
+            // rel: 'prefetch' 空闲加载其他页面资源 兼容性更差
+        }),
     ],
 
     optimization: {

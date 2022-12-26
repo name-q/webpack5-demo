@@ -1,4 +1,5 @@
 module.exports = {
+    parser: "@babel/eslint-parser",
     // 解析选项
     parserOptions: {
         // ES 语法版本
@@ -9,7 +10,9 @@ module.exports = {
         ecmaFeatures: {
             // 如果是 React 项目，就需要开启 jsx 语法
             jsx: true
-        }
+        },
+        // 不限制esLint对rmport使用位置
+        allowImportExportEverywhere: true
     },
     env: {
         // 启用node中全局变量

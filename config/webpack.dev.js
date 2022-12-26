@@ -9,7 +9,11 @@ module.exports = {
     // 输出
     output: {
         // 文件名 将 js 文件输出到 static/js 目录中
-        filename: "static/js/main.js",
+        filename: "static/js/[name].js",
+        // 动态导入输出资源命名方式
+        chunkFilename: "static/js/[name].chunk.js",
+        // 图片、字体等资源命名方式（通过type: "asset"处理的文件）（注意用hash）
+        assetModuleFilename: "static/media/[name].[hash:8][ext]",
     },
 
     // 加载器
@@ -56,21 +60,21 @@ module.exports = {
                                 maxSize: 30 * 1024
                             }
                         },
-                        generator: {
-                            // 将图片文件输出到 static/img 目录中
-                            // [hash:8]: hash值取8位
-                            // [ext]: 使用之前的文件扩展名
-                            // [query]: 添加之前的query参数
-                            filename: "static/img/[hash:8][ext][query]",
-                        },
+                        // generator: {
+                        //     // 将图片文件输出到 static/img 目录中
+                        //     // [hash:8]: hash值取8位
+                        //     // [ext]: 使用之前的文件扩展名
+                        //     // [query]: 添加之前的query参数
+                        //     filename: "static/img/[hash:8][ext][query]",
+                        // },
                     },
                     {
                         test: /\.(ttf|woff2?|map4|map3|avi)$/,
                         // 原封不动的输出
                         type: "asset/resource",
-                        generator: {
-                            filename: "static/media/[hash:8][ext][query]",
-                        },
+                        // generator: {
+                        //     filename: "static/media/[hash:8][ext][query]",
+                        // },
                     },
                     {
                         test: /\.js$/,
