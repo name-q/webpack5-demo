@@ -9,9 +9,9 @@ module.exports = {
     // 输出
     output: {
         // 文件名 将 js 文件输出到 static/js 目录中
-        filename: "static/js/[name].js",
+        filename: "static/js/[name].[contenthash:8].js",
         // 动态导入输出资源命名方式
-        chunkFilename: "static/js/[name].chunk.js",
+        chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
         // 图片、字体等资源命名方式（通过type: "asset"处理的文件）（注意用hash）
         assetModuleFilename: "static/media/[name].[hash:8][ext]",
     },

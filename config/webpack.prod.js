@@ -38,10 +38,10 @@ module.exports = {
     output: {
         // 输出路径 -绝对路径
         path: path.resolve(__dirname, '../dist'),
-        // 文件名 将 js 文件输出到 static/js 目录中
-        filename: "static/js/[name].js",
+        // 文件名 将 js 文件输出到 static/js 目录中 .[contenthash:8]根据文件内容输出hash值前8位
+        filename: "static/js/[name].[contenthash:8].js",
         // 动态导入输出资源命名方式
-        chunkFilename: "static/js/[name].chunk.js",
+        chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
         // 图片、字体等资源命名方式（通过type: "asset"处理的文件）（注意用hash）
         assetModuleFilename: "static/media/[name].[hash:8][ext]",
         // 自动将上次打包目录资源清空
@@ -155,8 +155,8 @@ module.exports = {
         // 提取css成单独文件
         new MiniCssExtractPlugin({
             // 定义输出文件名和目录
-            filename: "static/css/[name].css",
-            chunkFilename: "static/css/[name].chunk.css",
+            filename: "static/css/[name].[contenthash:8].css",
+            chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
         }),
         new TerserPlugin({
             // 开启多进程
@@ -164,7 +164,7 @@ module.exports = {
         }),
         new PreloadWebpackPlugin({
             // preload 空闲加载当前页资源 兼容性更好
-            rel: "preload", 
+            rel: "preload",
             as: "script",
             // rel: 'prefetch' 空闲加载其他页面资源 兼容性更差
         }),
@@ -213,6 +213,13 @@ module.exports = {
         splitChunks: {
             chunks: "all", // 对所有模块都进行分割
             // 其他内容用默认配置即可
+        },
+
+        // runtime中存储地址 防止模块内容改变导致名称改变 
+        // 引发相关联的模块名称改变最终导致的缓存失效
+        runtimeChunk: {
+            // runtime文件命名规则
+            name: (entrypoint) => `runtime~${entrypoint.name}`, 
         },
     },
 

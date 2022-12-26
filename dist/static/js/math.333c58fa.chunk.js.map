@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/math.333c58fa.chunk.js","mappings":"kHAAO,SAASA,EAAIC,EAAGC,GACnB,OAAOD,EAAIC,CACf,C","sources":["webpack://webpack5-demo/./src/js/math.js"],"sourcesContent":["export function mul(x, y) {\n    return x * y;\n}\n  "],"names":["mul","x","y"],"sourceRoot":""}
