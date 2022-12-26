@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkwebpack5_demo=self.webpackChunkwebpack5_demo||[]).push([[52],{52:(e,c,u)=>{function k(...e){return e.reduce(((e,c)=>e+c),0)}u.d(c,{S:()=>k})}}]);
+//# sourceMappingURL=52.js.map

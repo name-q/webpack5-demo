@@ -1,0 +1,1 @@
+{"version":3,"file":"52.js","mappings":"0GAAO,SAASA,KAAOC,GACnB,OAAOA,EAAKC,QAAO,CAACC,EAAGC,IAAMD,EAAIC,GAAG,EACxC,C","sources":["webpack://webpack5-demo/./src/math.js"],"sourcesContent":["export function sum(...args) {\n    return args.reduce((p, c) => p + c, 0);\n}"],"names":["sum","args","reduce","p","c"],"sourceRoot":""}
