@@ -7,7 +7,13 @@ export const data = {
   "excerpt": "",
   "headers": [],
   "git": {
-    "contributors": []
+    "contributors": [
+      {
+        "name": "qianyu",
+        "email": "1620206666@qq.com",
+        "commits": 1
+      }
+    ]
   },
   "filePathRelative": "intro/asset.md"
 }
